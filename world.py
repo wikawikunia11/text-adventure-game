@@ -7,20 +7,23 @@ class World:
         self.location_list = []
         self.data_list = []
         self._size = 0
-        with open(file_name, "r") as file:
-            data = json.load(file)
-        locations_data = data['locations']
-        self._size = int(data['world size'])
-        for location in locations_data:
-            self.data_list.append(
-                {
-                    'name': location['name'],
-                    'description': location['description'],
-                    'object': location['object'],
-                    'moves': location['moves']
-                }
-            )
-        self.create_map()
+        try:
+            with open(file_name, "r") as file:
+                data = json.load(file)
+            locations_data = data['locations']
+            self._size = int(data['world size'])
+            for location in locations_data:
+                self.data_list.append(
+                    {
+                        'name': location['name'],
+                        'description': location['description'],
+                        'object': location['object'],
+                        'moves': location['moves']
+                    }
+                )
+            self.create_map()
+        except FileNotFoundError:
+            raise FileNotFoundError("This file does not exist")
 
     @property
     def size(self) -> int:
