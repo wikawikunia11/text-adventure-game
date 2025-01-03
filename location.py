@@ -9,6 +9,8 @@ class Location:
         self._description = description
         self._object = object
         self._moves = moves
+        if self._object is not None:
+            self.def_object()
 
     @property
     def name(self) -> str:
@@ -22,6 +24,14 @@ class Location:
     def coordinates(self) -> tuple:
         return self._coordinates
 
+    @property
+    def moves(self) -> list:
+        return self._moves
+
+    @property
+    def object(self) -> object:
+        return self._object
+
     def def_object(self) -> None:
         if "monster" in self._object.keys():
             level = self._object['monster']['level']
@@ -32,5 +42,5 @@ class Location:
             if level == 3:
                 monster = Monster_level_3(self._object['monster'])
             self._object = monster
-        if "trader" in self._object.keys():
+        elif "trader" in self._object.keys():
             self._object = Trader(self._object['trader'])
