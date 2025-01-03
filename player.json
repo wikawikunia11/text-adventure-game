@@ -1,0 +1,11 @@
+{
+   "health": 100,
+    "hit_strength": 20,
+    "backpack":[
+        {"coins": 10}
+    ],
+    "location":[
+       {"x": 0},
+       {"y": 0}
+    ]
+}
