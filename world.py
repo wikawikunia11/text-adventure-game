@@ -7,7 +7,7 @@ class World:
         self.location_list = []
         self.data_list = []
         self._size = 0
-        with open(f'{file_name}.json', "r") as file:
+        with open(file_name, "r") as file:
             data = json.load(file)
         locations_data = data['locations']
         self._size = int(data['world size'])
