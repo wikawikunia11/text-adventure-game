@@ -27,16 +27,16 @@
         "monster alive": "\nThe air is thick and foul, reeking of decay.\nMuddy pools bubble around you, and twisted trees rise from the swamp, their roots visible through water.\nInsects buzz faintly, and you hear splashes from something moving in the water and croaking of frogs.\nA monstrous figure comes out of the mist.\nIts body is covered in slimy scales, with long claws that shimmer in the faint light.\nIts glowing yellow eyes seem to pierce through the fog, watching your every move.\nRows of sharp teeth are visible and a low growl rumbles from its chest.\nTo the west and east, the swamp fades into a forest, dark and quiet.\nTo the south, you can just make out the distant lights of a city.\nThe swamp feels dangerous and alive, every shadow shifting.\nWhat do you do?\n",
         "monster dead" : "\nThe air is thick and foul, reeking of decay.\nMuddy pools bubble around you, and twisted trees rise from the swamp, their roots visible through water.\nInsects buzz faintly, and you hear splashes from something moving in the water and croaking of frogs.\nTo the west and east, the swamp fades into a forest, dark and quiet.\nTo the south, you can just make out the distant lights of a city.\nThe swamp feels dangerous and alive, every shadow shifting.\nWhat do you do?\n"
       },
-      "object": [{
+      "object": {
         "monster" : {
           "name": "",
           "health": "",
-          "type": 2,
+          "level": 2,
           "item": "",
           "description": "",
           "hit_strength" : 20
         }
-      }],
+      },
       "moves": [{
         "monster alive": ["fight monster",
                           "go east",
@@ -70,7 +70,7 @@
         "monster" : {
           "name": "",
           "health": "",
-          "type": 1,
+          "level": 1,
           "item": "",
           "description": ""
         }
@@ -99,16 +99,16 @@
         "monster alive": "\nYou step into the cave where the air is cold and damp.\nThe space ahead is very narrow with uneven ground and the sound of dripping water echoing around you.\nSuddenly, a low growl shakes the walls.\nFrom the shadows, a massive creature emerges, with its thick fur perfectly clean.\nIts glowing red eyes lock onto you as it growls, revealing sharp teeth.\nIts massive claws scrape the ground as it steps closer, its presence filling the cave.\nYou notice countless human bones lying all around you.\nThis might be the deadliest beast you have encountered.\nThe only way out is to the north, where daylight reaches the forest.\nWhat do you do?\n",
         "monster dead" : "\nYou step into the cave where the air is cold and damp.\nThe space ahead is very narrow with uneven ground, and the sound of dripping water echoes around you.\nThe cave feels too quiet.\nAs you move forward, you notice countless human bones scattered across the ground,\nsome half-buried in the earth, others barely visible in the dim light.\nThe weight of the atmosphere is overwhelming, as though the cave itself is holding its breath.\nThe path continues deeper into the shadows, but the only way out is to the north,\nwhere daylight filters through the caves mouth into the forest beyond.\nThe fresh air from outside feels like a distant memory.\nWhat do you do?\n"
       },
-      "object": [{
+      "object": {
         "monster" : {
           "name": "",
           "health": "",
-          "type": 3,
+          "level": 3,
           "item": "",
           "description": "",
           "hit_strength": 30
         }
-      }],
+      },
       "moves": [{
         "monster alive": ["go north",
                           "fight monster"],
@@ -118,7 +118,14 @@
     {
       "name": "tavern",
       "description": "\nYou see a large wooden building with a sign that reads The Drunk Duck.\nAs you step inside you are greeted by a wave of warmth and the scent of alcohol.\nIt's incredibly loud and you can barely squeeze through the bustling servers carrying venison and beer and men occupying every table.\nA man in the corner with a sour expression watches you intently.\nHis large belly is barely covered by clothes adorned with expensive gemstones.\nAt his belt hangs a pouch that jingles merrily with every movement. You recognize in him the famous trader from the city.\nAs you left the door open behind you (north) you see another entrance on the east side of the tavern.\nWhat do you do?\n",
-      "object": "trader",
+      "object": {"trader" : { "name": "Ghastly the Great",
+                              "backpack": { "key" : { "name": "key",
+                                                      "price": 100,
+                                                      "description" : "This is the mighty key that will open a new world before you."
+                                                    }
+                                          }
+                            }
+      },
       "moves": [
         "go east",
         "go north",
