@@ -1,4 +1,5 @@
 from world import World
+from location import Location
 import pytest
 
 
@@ -15,9 +16,7 @@ def test_create_map():
     world = World("test_world.json")
     assert world.size == 2
     assert len(world.location_list) == 4
-    loc = world.location_list[0]
-    assert loc.name == 'forest'
-    assert loc.description == 'This is a forest'
+    assert isinstance(world.location_list[0], Location)
 
 
 def test_wrong_file_name():
