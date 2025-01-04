@@ -3,7 +3,7 @@ from items import Trader
 
 
 class Location:
-    def __init__(self, x, y, name, description, moves, object=None):
+    def __init__(self, x, y, name, description, moves, object=None) -> None:
         self._coordinates = (x, y)
         self._name = name
         self._description = description
@@ -44,3 +44,11 @@ class Location:
             self._object = monster
         elif "trader" in self._object.keys():
             self._object = Trader(self._object['trader'])
+
+    def is_monster(self) -> bool:
+        return isinstance(self.object, (Monster_level_1,
+                                        Monster_level_2,
+                                        Monster_level_3))
+
+    def is_trader(self) -> bool:
+        return isinstance(self.object, Trader)
