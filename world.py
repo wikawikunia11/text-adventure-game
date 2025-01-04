@@ -3,7 +3,7 @@ import json
 
 
 class World:
-    def __init__(self, file_name):
+    def __init__(self, file_name: str) -> None:
         self.location_list = []
         self.data_list = []
         self._size = 0
