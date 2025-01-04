@@ -1,13 +1,14 @@
 import json
+from monsters import Monster_level_1, Monster_level_2, Monster_level_3
 
 
 class Player:
-    def __init__(self):
-        with open("player.json", 'r') as file:
+    def __init__(self, file_name):
+        with open(file_name, 'r') as file:
             data = json.loads(file)
             self.health = data["health"],
             self.hit_strength = data["hit_strength"],
-            # backpack
+            # self.backpack = data['backpack']
             self.location = (data["location"]['x'], data["location"]['y'])
 
     def is_alive(self, damage) -> bool:
@@ -33,8 +34,9 @@ class Player:
 
     def decision(self, current_loc: object) -> None:
         decision = input()
-        # tu zrobić
-
+        if decision == 'go east':
+            pass
+            # co??
 
     def find_location(self, coordinates: tuple, location_list: list) -> object:
         cnt = 0
@@ -76,6 +78,15 @@ class Player:
         curr_loc = self.find_location()
         print(curr_loc.description)
 
+    def curr_loc_description(curr_loc):
+        if isinstance(curr_loc.object, (Monster_level_1,
+                                        Monster_level_2,
+                                        Monster_level_3)):
+            print(curr_loc.description['monster alive'])
+        else:
+            pass
+    # JAK spr czy monster żyje -> usuwnie z mapy?? bo są dwa descriptions
+
     def go_south(self, world: object) -> None:
         new_loc = self.location[1] + 1
         if new_loc > world.size - 1:
@@ -83,14 +94,17 @@ class Player:
         else:
             self.location[1] = new_loc
         curr_loc = self.find_location()
-        print(curr_loc.description)
+        self.curr_loc_description(curr_loc)
 
     def fight_monster(self, monster: object) -> None:
-        while monster.is_alive() and self.is_alive():
-            # automatyczna walka
-            # wypisywać stan hp obu
-            # kto zwycieżył -> dwa ify przypadki
+        print(f'You are fighting monster level {monster.level}.')
+        while monster.is_alive(0) and self.is_alive(0):
+            print(f'Your hp is: {self.health}. '
+                  f'Monsters hp is: {monster.health}.')
+            monster.get_damage(self.attack())
             pass
+        if self.is_alive(0):
+            print('You have defeated the monster')
 
     def fight_monster_level2(self, monster: object) -> None:
         pass
@@ -99,7 +113,7 @@ class Player:
         pass
 
     def talk_to_traider(self, traider: object) -> None:
-        # if input() czy kupujemy klucz
+        # if input() czy kupić klucz
         pass
 
     def help():
