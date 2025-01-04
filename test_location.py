@@ -18,7 +18,7 @@ def test_create_location_with_monster():
           "name": "Thor",
           "health": 200,
           "level": 1,
-          "item": "10",
+          "coins": 10,
           "description": "This is Thor",
           "hit_strength": 20
         }}
