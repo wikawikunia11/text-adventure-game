@@ -16,14 +16,14 @@ def test_create_location_no_object():
 def test_create_location_with_monster():
     object = {"monster": {
           "name": "Thor",
-          "health": "200",
+          "health": 200,
           "level": 1,
           "item": "10",
           "description": "This is Thor",
           "hit_strength": 20
         }}
     loc = Location(1, 1, "swamp", "this is swamp", ["go west"], object)
-    assert isinstance(loc.object, Monster_level_1) == True
+    assert isinstance(loc.object, Monster_level_1)
 
 
 def test_create_location_with_trader():
@@ -31,4 +31,4 @@ def test_create_location_with_trader():
           "name": "Thor"
         }}
     loc = Location(1, 1, "swamp", "this is swamp", ["go west"], object)
-    assert isinstance(loc.object, Trader) == True
+    assert isinstance(loc.object, Trader)
