@@ -29,12 +29,12 @@
       },
       "object": {
         "monster" : {
-          "name": "",
-          "health": "",
+          "name": "Gregorr",
+          "health": 100,
           "level": 2,
-          "item": "",
-          "description": "",
-          "hit_strength" : 20
+          "coins": 30,
+          "description": "This is Gregorr",
+          "hit_strength" : 10
         }
       },
       "moves": [{
@@ -68,11 +68,11 @@
       },
       "object": [{
         "monster" : {
-          "name": "",
-          "health": "",
+          "name": "Argarr",
+          "health": 100,
           "level": 1,
-          "item": "",
-          "description": ""
+          "coins": 10,
+          "description": "This is Argarr"
         }
       }],
       "moves": [{
@@ -101,12 +101,12 @@
       },
       "object": {
         "monster" : {
-          "name": "",
-          "health": "",
+          "name": "Nanderr",
+          "health": 120,
           "level": 3,
-          "item": "",
-          "description": "",
-          "hit_strength": 30
+          "coins": 50,
+          "description": "This is Nanderr",
+          "hit_strength": 15
         }
       },
       "moves": [{
@@ -118,18 +118,11 @@
     {
       "name": "tavern",
       "description": "\nYou see a large wooden building with a sign that reads The Drunk Duck.\nAs you step inside you are greeted by a wave of warmth and the scent of alcohol.\nIt's incredibly loud and you can barely squeeze through the bustling servers carrying venison and beer and men occupying every table.\nA man in the corner with a sour expression watches you intently.\nHis large belly is barely covered by clothes adorned with expensive gemstones.\nAt his belt hangs a pouch that jingles merrily with every movement. You recognize in him the famous trader from the city.\nAs you left the door open behind you (north) you see another entrance on the east side of the tavern.\nWhat do you do?\n",
-      "object": {"trader" : { "name": "Ghastly the Great",
-                              "backpack": { "key" : { "name": "key",
-                                                      "price": 100,
-                                                      "description" : "This is the mighty key that will open a new world before you."
-                                                    }
-                                          }
-                            }
-      },
+      "object": {"trader" : { "name": "Ghastly the Great"}},
       "moves": [
         "go east",
         "go north",
-        "talk to the traider"
+        "talk to trader"
       ]
     },
     {
