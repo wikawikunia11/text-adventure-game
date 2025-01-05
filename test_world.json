@@ -1,10 +1,10 @@
 {
-    "world size": 2,
+    "world size": 3,
     "locations": [
       {
         "name": "forest",
         "description": "This is a forest",
-        "object": "None",
+        "object": {},
         "moves": [
           "go east"
         ]
@@ -12,7 +12,7 @@
       {
         "name": "city",
         "description": "This is a city",
-        "object": "None",
+        "object": {},
         "moves": [
           "go west"
         ]
@@ -20,7 +20,7 @@
       {
         "name": "swamp",
         "description": "This is a swamp",
-        "object": "None",
+        "object": {},
         "moves": [
           "go north"
         ]
@@ -28,9 +28,49 @@
       {
         "name": "cave",
         "description": "This is a cave",
-        "object": "None",
+        "object": {},
         "moves": [
           "go south"
+        ]
+      },
+      {
+        "name": "forest",
+        "description": "This is a forest",
+        "object": {},
+        "moves": [
+          "go east"
+        ]
+      },
+      {
+        "name": "city",
+        "description": "This is a city",
+        "object": {},
+        "moves": [
+          "go west"
+        ]
+      },
+      {
+        "name": "swamp",
+        "description": "This is a swamp",
+        "object": {},
+        "moves": [
+          "go north"
+        ]
+      },
+      {
+        "name": "swamp",
+        "description": "This is a swamp",
+        "object": {},
+        "moves": [
+          "go north"
+        ]
+      },
+      {
+        "name": "swamp",
+        "description": "This is a swamp",
+        "object": {},
+        "moves": [
+          "go north"
         ]
       }
     ]

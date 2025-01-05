@@ -22,7 +22,7 @@ class Monster_level_1:
                            'type, level, health, name, coins, description')
 
     def get_damage(self, damage: int) -> None:
-        if damage < 10:
+        if damage < 0:
             raise ValueError('Damage must be positive')
         if self.is_alive(damage):
             self.health -= damage

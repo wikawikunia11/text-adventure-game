@@ -1,5 +1,4 @@
 from clear_console import clear_terminal
-from player import Player
 
 
 class Item:
@@ -33,7 +32,7 @@ class Trader:
     def name(self) -> str:
         return self._name
 
-    def sell_key(self, player: Player) -> None:
+    def sell_key(self, player: object) -> None:
         player.backpack.add_key()
         player.backpack.spend_coins(self.item['price'])
         self.item = {}
@@ -44,7 +43,7 @@ class Trader:
             list_of_objects.append(Item(object))
         self._backpack = list_of_objects
 
-    def introduce(self, player: Player) -> None:
+    def introduce(self, player: object) -> None:
         clear_terminal()
         print("Hello my name is {self.name} and"
               "I am a trader here in this city. Let me introduce my offer.")
