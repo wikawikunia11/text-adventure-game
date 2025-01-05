@@ -4,7 +4,7 @@
     {
       "name": "forest",
       "description": "\nYou are deep in the forest, overwhelmed by the silence.\nThe sun has completely disappeared behind the treetops, leaving you in the darkness.\nYour eyes slowly adjust to the gloom.\nSuddenly, the silence is broken by the hoot of an owl.\nA shiver runs down your spine.\nYou want to get out of here as quickly as possible.\nTo the east and south, the dark forest stretches on.\nLooking west, you see bubbling sludge on the ground and smell the stench of a swamp.\nWhat do you do?\n",
-      "object": "None",
+      "object": {},
       "moves": [
         "go east",
         "go west",
@@ -14,7 +14,7 @@
     {
       "name": "forest",
       "description": "\nThe forest around you is quiet and dark, with tall trees reaching high above.\nTheir branches sway gently, and the air smells of moss and wet earth.\nFaint light slips through the leaves, creating pale spots on the ground.\nYou hear the soft rustling of animals moving nearby and the distant croak of frogs.\nTo the west, the trees grow thick and close together and an old path covered in vines stretches into the darkness.\nTo the south, there is a faint glimmer of water, maybe a stream or pond.\nThere could be a bridge there. To the east, the forest opens up to a smelly swamp.\nAs you come closer the croak of the frogs intensifies.\nWhat do you do?\n",
-      "object": "None",
+      "object": {},
       "moves": [
         "go east",
         "go west",
@@ -34,10 +34,10 @@
           "level": 2,
           "coins": 30,
           "description": "This is Gregorr",
-          "hit_strength" : 10
+          "hit strength": 10
         }
       },
-      "moves": [{
+      "moves": {
         "monster alive": ["fight monster",
                           "go east",
                           "go west",
@@ -48,12 +48,11 @@
                           "go north",
                           "go south"]
       }
-      ]
     },
     {
       "name": "forest",
       "description": "\nAll around you, there are only trees.\nIn the distance, you hear wolves howling and birds chirping.\nBlades of grass rustle as the wind brushes past them, whistling softly.\nThe last rays of sunlight struggle to pierce through the treetops, gently grazing your face.\nA chill wraps around your light clothing.\nTo the north stretches a forest, with a path worn down by travelers.\nLooking west, you can make out the outlines of city buildings and hear the faint laughter of children.\nTurning south, you see a massive cave that looks like a gaping abyss.\nWhat do you do?\n",
-      "object": " None",
+      "object": {},
       "moves": [
         "go west",
         "go north",
@@ -66,7 +65,7 @@
         "monster alive": "\nYou hear the soft murmur of a stream.\nIn front of you stands a small bridge made of uneven stones.\nIt looks very old, and you worry about its stability, as you step on it.\nAt the northern end of the bridge, the forest stretches on,\nwhile at the southern end stands an old tavern, from which loud shouts of joy can be heard.\nSuddenly, you see a massive creature, half-covered in fur and half in feathers.\nIts terrifying claws are smeared with blood, and its fangs, too large to fit in its mouth, stick out and shimmer in the sunlight.\nYou've never seen a monster like this in your life.\nCurious, could there be something in the pouch tied to its side?\nCan you defeat it?\nWhat do you do?\n",
         "monster dead" : "\nYou hear the soft murmur of a stream.\nIn front of you stands a small bridge made of uneven stones.\nIt looks very old, and you worry about its stability, as you step on it.\nAt the northern end of the bridge, the forest stretches on,\nwhile at the southern end stands an old tavern, from which loud shouts of joy can be heard.\nWhat do you do?\n"
       },
-      "object": [{
+      "object": {
         "monster" : {
           "name": "Argarr",
           "health": 100,
@@ -74,19 +73,19 @@
           "coins": 10,
           "description": "This is Argarr"
         }
-      }],
-      "moves": [{
+      },
+      "moves": {
         "monster alive": ["go north",
                           "go south",
                         "fight monster"],
       "monster dead": ["go north",
                       "go south"]
-      }]
+      }
     },
     {
       "name": "city",
       "description": "\nYou enter the city market, where the air is filled with the smells of fresh bread, roasting meat, and sweet spices.\nStalls line the streets, colorful awnings offering shade to the merchants and their goods.\nTo your left, a butcher sells cuts of meat, and to your right, a spice vendor offers bags of fragrant herbs.\nA few steps further, a baker pulls warm pastries from his oven, and children run through the crowd, laughing and playing.\nMerchants shout out their prices, hoping to catch your attention.\nA light odor comes from the swamp north of you.\nTo the east a quiet forest stretches on.\nInviting you with a path.\nTo the south you can hear more conversations and laughter of children.\nAnother beautiful part of the city is visible.\nThe market is busy and alive with energy.\nWhat do you do?\n",
-      "object": "None",
+      "object": {},
       "moves": [
         "go east",
         "go north",
@@ -106,14 +105,14 @@
           "level": 3,
           "coins": 50,
           "description": "This is Nanderr",
-          "hit_strength": 15
+          "hit strength": 15
         }
       },
-      "moves": [{
+      "moves": {
         "monster alive": ["go north",
                           "fight monster"],
         "monster dead": ["go north"]
-      }]
+      }
     },
     {
       "name": "tavern",
@@ -128,7 +127,7 @@
     {
       "name": "city",
       "description": "\nYou stand in the middle of a large cobblestone square.\nSurrounding you are wooden buildings with stone foundations, some two or three stories high, providing shelter for the local people.\nIn front of you, children run by, laughing as they play tag.\nBehind you, you hear the clatter of hooves from a carriage and the neighing of a horse.\nTo the west, there's a tavern, and you can hear its owner arguing with someone in the alley.\nTo the north, rows of houses stretch further, marking a bustling, lively city.\nTo the south, all you hear is the distant, bubbling swamp, uninhabited and silent.\nWhat do you do?\n",
-      "object": "None",
+      "object": {},
       "moves": [
         "go west",
         "go north",

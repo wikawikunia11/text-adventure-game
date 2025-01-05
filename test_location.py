@@ -24,6 +24,8 @@ def test_create_location_with_monster():
         }}
     loc = Location(1, 1, "swamp", "this is swamp", ["go west"], object)
     assert isinstance(loc.object, Monster_level_1)
+    assert loc.is_monster()
+    assert not loc.is_trader()
 
 
 def test_create_location_with_trader():
@@ -32,3 +34,5 @@ def test_create_location_with_trader():
         }}
     loc = Location(1, 1, "swamp", "this is swamp", ["go west"], object)
     assert isinstance(loc.object, Trader)
+    assert not loc.is_monster()
+    assert loc.is_trader()
