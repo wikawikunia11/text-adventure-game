@@ -1,4 +1,5 @@
 from clear_console import clear_terminal
+from time import sleep
 
 
 class Item:
@@ -12,21 +13,21 @@ class Item:
                            'name, description, price')
 
     def get_description(self) -> str:
-        return f'{self.description}. This item costs {self.price} coins'
+        return f"{self.description}. This item costs {self.price} coins"
 
 
 class Trader:
     def __init__(self, trader: dict) -> None:
         self.type = 'trader'
-        self.item = {
-            "name": "key",
-            "description": "",
-            "price": 100
-        }
         try:
+            self.item = trader['item']
             self._name = trader['name']
         except KeyError:
-            raise KeyError('The dictionary should contain keys: name')
+            raise KeyError('The dictionary should contain keys: name, item')
+        try:
+            self.item["price"] = int(self.item["price"])
+        except Exception:
+            raise ValueError('Price should be a number')
 
     @property
     def name(self) -> str:
@@ -37,37 +38,50 @@ class Trader:
         player.backpack.spend_coins(self.item['price'])
         self.item = {}
 
-    def def_objects(self, trader: dict) -> None:
-        list_of_objects = []
-        for object in trader['backpack']:
-            list_of_objects.append(Item(object))
-        self._backpack = list_of_objects
-
     def introduce(self, player: object) -> None:
-        clear_terminal()
-        print("Hello my name is {self.name} and"
-              "I am a trader here in this city. Let me introduce my offer.")
-        if self.item != {}:
+        while True:
+            clear_terminal()
+            print(f"Hello my name is {self.name} and "
+                  "I am a trader here in this city. "
+                  "Let me introduce my offer.")
             self.introduce_offer()
-            while True:
-                print('1. Buy item\n2.Finish conversation')
-                decision = input("Enter number of your decision: ")
-                if decision not in (1, 2):
-                    raise ValueError("The decision can be 1 or 2")
-                elif decision == 1:
-                    if player.backpack.coins >= self.item['price']:
-                        print('You dont have enough coins.')
-                    else:
-                        self.sell_key(player)
-                elif decision == 2:
-                    print("Goodbye!")
+            print('1.Check your sack\n2.Buy item\n3.Finish conversation')
+            decision = int(input("Enter number of your decision: "))
+            if decision not in (1, 2, 3):
+                clear_terminal()
+                print('Invalid decision. Please try again.')
+                sleep(2)
+            elif decision == 1:
+                clear_terminal()
+                print(f'You have {player.backpack.coins} '
+                      'coins in your sack.')
+                sleep(2)
+            elif decision == 2:
+                clear_terminal()
+                if self.item == {}:
+                    print("I dont have anything to offer")
+                    sleep(2)
+                elif player.backpack.coins < self.item['price']:
+                    print('You do not have enough coins.')
+                    sleep(2)
+                else:
+                    clear_terminal()
+                    self.sell_key(player)
+                    print('Done! Goodbye!')
+                    sleep(2)
                     break
-        else:
-            print("I dont have anything to offer")
+            elif decision == 3:
+                clear_terminal()
+                print("Goodbye!")
+                sleep(2)
+                break
 
     def introduce_offer(self) -> None:
-        print(f'1. {self.item["name"]} : {self.item["description"]}\n'
-              f'This item costs {self.item["price"]}')
+        if self.item != {}:
+            print(f'1. {self.item["name"]} : {self.item["description"]}\n'
+                  f'\tThis item costs {self.item["price"]} coins.\n')
+        else:
+            print('I dont have anything to offer')
 
 
 class Backpack:
@@ -83,3 +97,4 @@ class Backpack:
 
     def add_key(self) -> None:
         self.is_key = True
+        print('You have the key! The game is complete!')

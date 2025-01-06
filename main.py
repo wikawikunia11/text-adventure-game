@@ -1,7 +1,7 @@
 import sys
 from clear_console import clear_terminal
-from time import sleep
 from player import Player
+from time import sleep
 from world import World
 
 
@@ -11,6 +11,7 @@ def main():
     print("Welcome to the Game!")
 
     while True:
+        clear_terminal()
         print("\nMain Menu:")
         print("1. Start Game")  # co z zapisaną grą
         print("2. Exit")
@@ -18,28 +19,49 @@ def main():
         choice = input("Enter a number of your choice: ")
 
         if choice == "1":
+            clear_terminal()
             print("Starting the game...")
-            start_game("loactions.json", "player.json")
-
+            sleep(2)
+            start_game("locations.json", "player.json")
         elif choice == "2":
+            clear_terminal()
             print("Exiting the game. Goodbye!")
             sys.exit()
-
         else:
+            clear_terminal()
             print("Invalid choice. Please try again.")
+            sleep(2)
 
 
 def get_game_description():
     with open("game_start.txt", 'r') as file:
         print(file.read())
+        print("1. Continue")
+        print("2. Exit")
+        choice = input("Enter a number of your choice: ")
+        if choice == "1":
+            return
+        elif choice == "2":
+            clear_terminal()
+            print("Exiting the game. Goodbye!")
+            sys.exit()
+        else:
+            clear_terminal()
+            print("Invalid choice. Please try again.")
+            sleep(2)
+            get_game_description()
 
 
 def start_game(world_file, player_file):
     clear_terminal()
     get_game_description()
-    sleep(20)
-    World(world_file)
-    Player(player_file)
+    world = World(world_file)
+    player = Player(player_file)
+    clear_terminal()
+    loc = player.find_location(player.location, world.location_list)
+    print(loc.description)
+
+    player.decision(loc, world)
 
 
 if __name__ == "__main__":
