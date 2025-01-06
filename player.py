@@ -1,5 +1,6 @@
 import json
 from items import Backpack
+from time import sleep
 from clear_console import clear_terminal
 
 
@@ -31,7 +32,8 @@ class Player:
             raise FileNotFoundError('There is no such file')
 
     def is_alive(self, damage: int) -> bool:
-        return (self.health - damage > 0)
+        if isinstance(damage, int) and damage >= 0:
+            return (self.health - damage > 0)
 
     def attack(self) -> None:
         return self.hit_strength
@@ -44,6 +46,7 @@ class Player:
 
     def die(self) -> bool:
         print('Game over!')
+        self.health = 0
         # od poczatku
 
     def heal(self) -> None:
@@ -62,28 +65,47 @@ class Player:
             moves_list = [move for move in current_loc.moves]
         return moves_list
 
+    def print_options(self, options: list) -> None:
+        print('These are your options:')
+        for option in options:
+            print(option)
+
     def decision(self, current_loc: object, world: object) -> None:
         list_of_moves = self.give_options(current_loc)
-        print(list_of_moves)
+        self.print_options(list_of_moves)
         decision = input("Please write your choice: ").lower()
         if decision not in list_of_moves:
-            raise ValueError(f'You cannot make that move.'
-                             f'Try one of these: {list_of_moves}.')
+            clear_terminal()
+            print('You cannot make that move.'
+                  'Please try again.')
+            sleep(3)
+            self.decision(current_loc, world)
         else:
             if decision == 'go east':
                 self.go_east(world)
-            if decision == ' go west':
+            elif decision == ' go west':
                 self.go_west(world)
-            if decision == 'go south':
+            elif decision == 'go south':
                 self.go_south(world)
-            if decision == 'go north':
+            elif decision == 'go north':
                 self.go_north(world)
-            if decision == 'fight monster':
-                self.fight_monster(current_loc.object)
-            if decision == 'talk to trader':
+            elif decision == 'fight monster':
+                clear_terminal()
+                if current_loc.object.level == 1:
+                    self.fight_monster(current_loc.object)
+                elif current_loc.object.level == 2:
+                    self.fight_monster_level_2(current_loc.object)
+                else:
+                    self.fight_monster_level_3(current_loc.object)
+                self.curr_loc_description(current_loc)
+                self.decision(current_loc, world)
+            elif decision == 'talk to trader':
+                clear_terminal()
                 self.talk_to_trader(current_loc.object)
+                self.curr_loc_description(current_loc)
+                self.decision(current_loc, world)
 
-    def find_location(self, coords: list, location_list: list) -> object:
+    def find_location(self, coords: tuple, location_list: list) -> object:
         loc = None
         for i in range(len(location_list)):
             if coords == location_list[i].coordinates:
@@ -99,7 +121,8 @@ class Player:
         else:
             self.location = (new_loc, self.location[1])
         curr_loc = self.find_location(self.location, world.location_list)
-        print(curr_loc.description)
+        self.curr_loc_description(curr_loc)
+        self.decision(curr_loc, world)
 
     def go_east(self, world: object) -> None:
         new_loc = self.location[0] + 1
@@ -108,7 +131,8 @@ class Player:
         else:
             self.location = (new_loc, self.location[1])
         curr_loc = self.find_location(self.location, world.location_list)
-        print(curr_loc.description)
+        self.curr_loc_description(curr_loc)
+        self.decision(curr_loc, world)
 
     def go_north(self, world: object) -> None:
         new_loc = self.location[1] - 1
@@ -117,7 +141,8 @@ class Player:
         else:
             self.location = (self.location[0], new_loc)
         curr_loc = self.find_location(self.location, world.location_list)
-        print(curr_loc.description)
+        self.curr_loc_description(curr_loc)
+        self.decision(curr_loc, world)
 
     def go_south(self, world: object) -> None:
         new_loc = self.location[1] + 1
@@ -126,10 +151,10 @@ class Player:
         else:
             self.location = (self.location[0], new_loc)
         curr_loc = self.find_location(self.location, world.location_list)
-        print(curr_loc.description)
+        self.curr_loc_description(curr_loc)
+        self.decision(curr_loc, world)
 
-    def curr_loc_description(curr_loc: object) -> None:
-        clear_terminal()
+    def curr_loc_description(self, curr_loc: object) -> None:
         if curr_loc.is_monster():
             if curr_loc.object.is_alive(0):
                 print(curr_loc.description['monster alive'])
@@ -139,47 +164,63 @@ class Player:
             print(curr_loc.description)
 
     def fight_status(self, monster: object):
-        print(f'Your hp is: {self.health}.'
+        print(f'Your hp is: {self.health}. '
               f'Monsters hp is: {monster.health}.')
 
     def fight_monster(self, monster: object) -> None:
         print(f'You are fighting monster level 1 named {monster.name}.')
         while monster.is_alive(0) and self.is_alive(0):
             self.fight_status(monster)
+            sleep(2)
             monster.get_damage(self.attack())
         if self.is_alive(0):
             clear_terminal()
-            print('You have defeated the monster. You are healed.')
+            print('You have defeated the monster! You are healed.')
+            self.receive_coins(monster.give_coins())
             self.heal()
 
     def fight_monster_level_2(self, monster: object) -> None:
-        print(f'You are fighting monster level 2 named {monster.name}.')
+        print(f'You are fighting monster level 2 named {monster.name}.'
+              f'This monster can attack you!')
         while monster.is_alive(0) and self.is_alive(0):
             self.fight_status(monster)
+            sleep(2)
             monster.get_damage(self.attack())
-            self.get_damage(monster.attack_player())
+            damage = monster.attack_player()
+            if damage > 0:
+                self.get_damage(damage)
+                print('You have been hit!')
         if self.is_alive(0):
             clear_terminal()
-            print('You have defeated the monster. You are healed.')
+            print('You have defeated the monster! You are healed.')
+            self.receive_coins(monster.give_coins())
             self.heal()
 
     def fight_monster_level_3(self, monster: object) -> None:
-        print(f'You are fighting monster level 3 named {monster.name}.')
-        while monster.is_alive(0) and self.is_alive(0):
+        print(f'You are fighting monster level 3 named {monster.name}.'
+              f'This monster can attack you and heal itself!')
+        while monster.is_alive(0) and self.is_alive(damage=0):
             self.fight_status(monster)
+            sleep(2)
             monster.get_damage(self.attack())
-            self.get_damage(monster.attack_player())
-            monster.heal()
+            damage = monster.attack_player()
+            if damage > 0:
+                self.get_damage(damage)
+                print('You have been hit!')
+            monster.heal(self.attack())
         if self.is_alive(0):
             clear_terminal()
-            print('You have defeated the monster. You are healed.')
+            print('You have defeated the monster! You are healed.')
+            self.receive_coins(monster.give_coins())
             self.heal()
 
     def talk_to_trader(self, trader: object) -> None:
-        trader.introduce()
+        trader.introduce(self)
 
     def receive_coins(self, coins: int) -> None:
+        print(f'You have received {coins} coins!')
         self.backpack.add_coins(coins)
+        sleep(2)
 
     def help():
         pass
