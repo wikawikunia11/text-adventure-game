@@ -1,5 +1,6 @@
 from monsters import Monster_level_1, Monster_level_2, Monster_level_3
 from items import Trader
+from clear_console import clear_terminal
 
 
 class Location:
@@ -18,6 +19,7 @@ class Location:
 
     @property
     def description(self) -> str:
+        clear_terminal()
         return self._description
 
     @property

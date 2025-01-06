@@ -31,8 +31,8 @@ class World:
 
     def create_map(self) -> None:
         cnt = 0
-        for r in range(self.size):
-            for c in range(self.size):
+        for c in range(self.size):
+            for r in range(self.size):
                 name = self.data_list[cnt]['name']
                 description = self.data_list[cnt]['description']
                 moves = self.data_list[cnt]['moves']
