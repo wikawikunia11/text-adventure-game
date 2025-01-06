@@ -32,11 +32,10 @@ class Monster_level_1:
     def give_coins(self) -> int:
         return self.coins
 
-    def is_alive(self, damage: int) -> int:
-        return ((self.health-damage) > 0)
+    def is_alive(self, damage: int) -> bool:
+        return (self.health - damage > 0)
 
     def die(self) -> None:
-        self.give_coins()
         self.health = 0
 
 
@@ -62,14 +61,15 @@ class Monster_level_3(Monster_level_2):
     def __init__(self, monster: dict) -> None:
         super().__init__(monster)
 
-    def heal(self, damage) -> None:
-        if damage < 0:
+    def heal(self, damage: int) -> None:
+        if not isinstance(damage, int) or damage < 0:
             raise ValueError('Damage must be a positive int')
         if randint(1, 4) == 4:
             if self.health + damage < self._max_health:
                 self.health += damage
             else:
                 self.health = self._max_health
+            print("Oh no the monster healed!")
 
     def attack_player(self) -> None:
         if randint(1, 4) == 4:
@@ -77,3 +77,5 @@ class Monster_level_3(Monster_level_2):
                 return self.hit_strength*2
             else:
                 return self.hit_strength
+        else:
+            return 0
