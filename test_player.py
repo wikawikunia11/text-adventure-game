@@ -1,6 +1,7 @@
 from player import Player
 from location import Location
 from world import World
+from monsters import Monster_level_1, Monster_level_2, Monster_level_3
 import pytest
 
 
@@ -74,9 +75,19 @@ def test_player_give_options_no_monster():
     assert player.give_options(loc) == ["go west", "go east"]
 
 
-def test_player_decision():
-    # jak??
-    pass
+def test_player_decision(monkeypatch):
+    player = Player("test_player.json")
+    world = World("test_world.json")
+    monkeypatch.setattr("builtins.input", lambda _: "go east")
+    player.decision(world.location_list[0], world)
+    assert player.location == (1, 0)
+
+
+def test_player_decision_not_in_list(monkeypatch):
+    player = Player("test_player.json")
+    world = World("test_world.json")
+    monkeypatch.setattr("builtins.input", lambda _: "go west")
+    player.decision(world.location_list[0], world)
 
 
 def test_player_go_east():
@@ -121,3 +132,57 @@ def test_player_go_south():
     assert player.location == (0, 2)
     player.go_south(world)
     assert player.location == (0, 0)
+
+
+def test_player_fight_monster_level_3():
+    player = Player("test_player.json")
+    monster_data = {
+        'level': 3,
+        'health': 2,
+        "name": "Thor",
+        'description': 'This is Thor',
+        'coins': 50,
+        'hit strength': 10
+    }
+    monster = Monster_level_3(monster_data)
+    player.fight_monster_level_3(monster)
+    assert monster.health == 0
+    assert player.backpack.coins == 60
+
+
+def test_player_fight_monster_level_2():
+    player = Player("test_player.json")
+    monster_data = {
+        'level': 2,
+        'health': 2,
+        "name": "Thor",
+        'description': 'This is Thor',
+        'coins': 50,
+        'hit strength': 10
+    }
+    monster = Monster_level_2(monster_data)
+    player.fight_monster_level_2(monster)
+    assert monster.health == 0
+    assert player.backpack.coins == 60
+
+
+def test_player_fight_monster():
+    player = Player("test_player.json")
+    monster_data = {
+        'level': 1,
+        'health': 2,
+        "name": "Thor",
+        'description': 'This is Thor',
+        'coins': 50,
+        'hit strength': 10
+    }
+    monster = Monster_level_1(monster_data)
+    player.fight_monster(monster)
+    assert monster.health == 0
+    assert player.backpack.coins == 60
+
+
+def test_curr_loc_description():
+    world = World("test_world.json")
+    player = Player("test_player.json")
+    player.curr_loc_description(world.location_list[0])

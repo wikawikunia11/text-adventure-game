@@ -30,7 +30,12 @@ def test_create_location_with_monster():
 
 def test_create_location_with_trader():
     object = {"trader": {
-          "name": "Thor"
+          "name": "Thor",
+          "item": {
+            "name": "key",
+            "description": "this is key",
+            "price": 20
+          }
         }}
     loc = Location(1, 1, "swamp", "this is swamp", ["go west"], object)
     assert isinstance(loc.object, Trader)
