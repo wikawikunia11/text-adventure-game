@@ -30,7 +30,7 @@
       "object": {
         "monster" : {
           "name": "Gregorr",
-          "health": 100,
+          "health": 200,
           "level": 2,
           "coins": 30,
           "description": "This is Gregorr",
@@ -101,7 +101,7 @@
       "object": {
         "monster" : {
           "name": "Nanderr",
-          "health": 120,
+          "health": 200,
           "level": 3,
           "coins": 50,
           "description": "This is Nanderr",

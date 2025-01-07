@@ -81,7 +81,7 @@ class Trader:
             print(f'1. {self.item["name"]} : {self.item["description"]}\n'
                   f'\tThis item costs {self.item["price"]} coins.\n')
         else:
-            print('I dont have anything to offer')
+            print('I dont have anything to offer.\n')
 
 
 class Backpack:

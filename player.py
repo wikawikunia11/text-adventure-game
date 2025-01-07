@@ -79,11 +79,13 @@ class Player:
             print('You cannot make that move.'
                   'Please try again.')
             sleep(3)
+            clear_terminal()
+            self.curr_loc_description(current_loc)
             self.decision(current_loc, world)
         else:
             if decision == 'go east':
                 self.go_east(world)
-            elif decision == ' go west':
+            elif decision == 'go west':
                 self.go_west(world)
             elif decision == 'go south':
                 self.go_south(world)
@@ -114,15 +116,18 @@ class Player:
         if loc is None:
             raise IndexError("Location with coordinates not found")
 
+    def go(self, world: object) -> None:
+        curr_loc = self.find_location(self.location, world.location_list)
+        self.curr_loc_description(curr_loc)
+        self.decision(curr_loc, world)
+
     def go_west(self, world: object) -> None:
         new_loc = self.location[0] - 1
         if new_loc < 0:
             self.location = (world.size - 1, self.location[1])
         else:
             self.location = (new_loc, self.location[1])
-        curr_loc = self.find_location(self.location, world.location_list)
-        self.curr_loc_description(curr_loc)
-        self.decision(curr_loc, world)
+        self.go(world)
 
     def go_east(self, world: object) -> None:
         new_loc = self.location[0] + 1
@@ -130,9 +135,7 @@ class Player:
             self.location = (0, self.location[1])
         else:
             self.location = (new_loc, self.location[1])
-        curr_loc = self.find_location(self.location, world.location_list)
-        self.curr_loc_description(curr_loc)
-        self.decision(curr_loc, world)
+        self.go(world)
 
     def go_north(self, world: object) -> None:
         new_loc = self.location[1] - 1
@@ -140,9 +143,7 @@ class Player:
             self.location = (self.location[0], world.size - 1)
         else:
             self.location = (self.location[0], new_loc)
-        curr_loc = self.find_location(self.location, world.location_list)
-        self.curr_loc_description(curr_loc)
-        self.decision(curr_loc, world)
+        self.go(world)
 
     def go_south(self, world: object) -> None:
         new_loc = self.location[1] + 1
@@ -150,9 +151,7 @@ class Player:
             self.location = (self.location[0], 0)
         else:
             self.location = (self.location[0], new_loc)
-        curr_loc = self.find_location(self.location, world.location_list)
-        self.curr_loc_description(curr_loc)
-        self.decision(curr_loc, world)
+        self.go(world)
 
     def curr_loc_description(self, curr_loc: object) -> None:
         if curr_loc.is_monster():
