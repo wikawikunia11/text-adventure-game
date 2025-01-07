@@ -3,6 +3,8 @@ from location import Location
 from world import World
 from monsters import Monster_level_1, Monster_level_2, Monster_level_3
 import pytest
+import unittest
+import unittest.mock
 
 
 def test_file():
@@ -90,48 +92,46 @@ def test_player_decision_not_in_list(monkeypatch):
     player.decision(world.location_list[0], world)
 
 
-def test_player_go_east():
-    player = Player("test_player.json")
-    world = World("test_world.json")
-    player.go_east(world)
-    assert player.location == (1, 0)
-    player.go_east(world)
-    assert player.location == (2, 0)
-    player.go_east(world)
-    assert player.location == (0, 0)
+class TestPlayer_go(unittest.TestCase):
+    def setUp(self):
+        self.world = World("test_world.json")
+        self.player = Player("test_player.json")
 
+    def test_go_west(self):
+        with unittest.mock.patch('player.Player.decision', return_value=None):
+            self.player.go_west(self.world)
+            self.assertEqual(self.player.location, (2, 0))
+            self.player.go_west(self.world)
+            self.assertEqual(self.player.location, (1, 0))
+            self.player.go_west(self.world)
+            self.assertEqual(self.player.location, (0, 0))
 
-def test_player_go_west():
-    player = Player("test_player.json")
-    world = World("test_world.json")
-    player.go_west(world)
-    assert player.location == (2, 0)
-    player.go_west(world)
-    assert player.location == (1, 0)
-    player.go_west(world)
-    assert player.location == (0, 0)
+    def test_go_east(self):
+        with unittest.mock.patch('player.Player.decision', return_value=None):
+            self.player.go_east(self.world)
+            self.assertEqual(self.player.location, (1, 0))
+            self.player.go_east(self.world)
+            self.assertEqual(self.player.location, (2, 0))
+            self.player.go_east(self.world)
+            self.assertEqual(self.player.location, (0, 0))
 
+    def test_go_north(self):
+        with unittest.mock.patch('player.Player.decision', return_value=None):
+            self.player.go_north(self.world)
+            self.assertEqual(self.player.location, (0, 2))
+            self.player.go_north(self.world)
+            self.assertEqual(self.player.location, (0, 1))
+            self.player.go_north(self.world)
+            self.assertEqual(self.player.location, (0, 0))
 
-def test_player_go_north():
-    player = Player("test_player.json")
-    world = World("test_world.json")
-    player.go_north(world)
-    assert player.location == (0, 2)
-    player.go_north(world)
-    assert player.location == (0, 1)
-    player.go_north(world)
-    assert player.location == (0, 0)
-
-
-def test_player_go_south():
-    player = Player("test_player.json")
-    world = World("test_world.json")
-    player.go_south(world)
-    assert player.location == (0, 1)
-    player.go_south(world)
-    assert player.location == (0, 2)
-    player.go_south(world)
-    assert player.location == (0, 0)
+    def test_go_south(self):
+        with unittest.mock.patch('player.Player.decision', return_value=None):
+            self.player.go_south(self.world)
+            self.assertEqual(self.player.location, (0, 1))
+            self.player.go_south(self.world)
+            self.assertEqual(self.player.location, (0, 2))
+            self.player.go_south(self.world)
+            self.assertEqual(self.player.location, (0, 0))
 
 
 def test_player_fight_monster_level_3():
