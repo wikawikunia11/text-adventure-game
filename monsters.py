@@ -6,7 +6,7 @@ class Monster_level_1:
         try:
             self.type = 'monster'
             self.level = monster['level']
-            if monster['health'] > 0:
+            if monster['health'] >= 0:
                 self.health = monster['health']
                 self._max_health = monster['health']
             else:
