@@ -43,3 +43,15 @@ class World:
                     loc = Location(r, c, name, description, moves)
                 self.location_list.append(loc)
                 cnt += 1
+
+    def save_world(self):
+        cnt = 0
+        for location in self.location_list:
+            if location.is_monster() and location.object.health == 0:
+                self.data_list[cnt]['object']['monster']['health'] = 0
+            cnt += 1
+        with open('saved_game.json', 'w') as file:
+            data_to_save = {}
+            data_to_save['world size'] = self.size
+            data_to_save['locations'] = self.data_list
+            json.dump(data_to_save, file, indent=4)

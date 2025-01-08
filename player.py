@@ -8,21 +8,21 @@ class Player:
     def __init__(self, file_name: str) -> None:
         try:
             with open(file_name, 'r') as file:
-                data = json.load(file)
+                self.data = json.load(file)
                 try:
-                    if data["health"] <= 0:
+                    if self.data["health"] <= 0:
                         raise ValueError('Health must be positive')
                     else:
-                        self.health = data["health"]
-                        self._max_health = data["health"]
-                    if data["hit_strength"] < 0:
+                        self.health = self.data["health"]
+                        self._max_health = self.data["health"]
+                    if self.data["hit_strength"] < 0:
                         raise ValueError('Hit strength must be positive')
                     else:
-                        self.hit_strength = data["hit_strength"]
-                    self.backpack = Backpack(data['backpack']['coins'])
+                        self.hit_strength = self.data["hit_strength"]
+                    self.backpack = Backpack(self.data['backpack']['coins'])
                     try:
-                        self.location = (data["location"]["x"],
-                                         data["location"]["y"])
+                        self.location = (self.data["location"]["x"],
+                                         self.data["location"]["y"])
                     except KeyError:
                         raise KeyError('Location should have keys: x and y')
                 except KeyError:
@@ -45,9 +45,11 @@ class Player:
             self.die()
 
     def die(self) -> bool:
+        clear_terminal()
         print('Game over!')
         self.health = 0
-        # od poczatku
+        # if input('Press enter to go back to home page: '):
+        #     self.backpack.is_key = True
 
     def heal(self) -> None:
         self.health = self._max_health
@@ -63,6 +65,7 @@ class Player:
                               for move in current_loc.moves['monster dead']]
         else:
             moves_list = [move for move in current_loc.moves]
+        moves_list.append("help")
         return moves_list
 
     def print_options(self, options: list) -> None:
@@ -71,41 +74,39 @@ class Player:
             print(option)
 
     def decision(self, current_loc: object, world: object) -> None:
-        list_of_moves = self.give_options(current_loc)
-        self.print_options(list_of_moves)
-        decision = input("Please write your choice: ").lower()
-        if decision not in list_of_moves:
-            clear_terminal()
-            print('You cannot make that move.'
-                  'Please try again.')
-            sleep(3)
+        while not self.backpack.is_key:
             clear_terminal()
             self.curr_loc_description(current_loc)
-            self.decision(current_loc, world)
-        else:
-            if decision == 'go east':
-                self.go_east(world)
-            elif decision == 'go west':
-                self.go_west(world)
-            elif decision == 'go south':
-                self.go_south(world)
-            elif decision == 'go north':
-                self.go_north(world)
-            elif decision == 'fight monster':
+            list_of_moves = self.give_options(current_loc)
+            self.print_options(list_of_moves)
+            decision = input("Please write your choice: ").lower()
+            if decision not in list_of_moves:
                 clear_terminal()
-                if current_loc.object.level == 1:
-                    self.fight_monster(current_loc.object)
-                elif current_loc.object.level == 2:
-                    self.fight_monster_level_2(current_loc.object)
-                else:
-                    self.fight_monster_level_3(current_loc.object)
-                self.curr_loc_description(current_loc)
-                self.decision(current_loc, world)
-            elif decision == 'talk to trader':
-                clear_terminal()
-                self.talk_to_trader(current_loc.object)
-                self.curr_loc_description(current_loc)
-                self.decision(current_loc, world)
+                print('You cannot make that move.'
+                      'Please try again.')
+                sleep(3)
+            else:
+                if decision == 'go east':
+                    self.go_east(world)
+                elif decision == 'go west':
+                    self.go_west(world)
+                elif decision == 'go south':
+                    self.go_south(world)
+                elif decision == 'go north':
+                    self.go_north(world)
+                elif decision == 'fight monster':
+                    clear_terminal()
+                    if current_loc.object.level == 1:
+                        self.fight_monster(current_loc.object)
+                    elif current_loc.object.level == 2:
+                        self.fight_monster_level_2(current_loc.object)
+                    else:
+                        self.fight_monster_level_3(current_loc.object)
+                elif decision == 'help':
+                    self.help(world)
+                elif decision == 'talk to trader':
+                    clear_terminal()
+                    self.talk_to_trader(current_loc.object)
 
     def find_location(self, coords: tuple, location_list: list) -> object:
         loc = None
@@ -118,7 +119,6 @@ class Player:
 
     def go(self, world: object) -> None:
         curr_loc = self.find_location(self.location, world.location_list)
-        self.curr_loc_description(curr_loc)
         self.decision(curr_loc, world)
 
     def go_west(self, world: object) -> None:
@@ -221,5 +221,25 @@ class Player:
         self.backpack.add_coins(coins)
         sleep(2)
 
-    def help():
-        pass
+    def save_player(self) -> None:
+        self.data['backpack']['coins'] = self.backpack.coins
+        self.data['location']['x'] = self.location[0]
+        self.data['location']['y'] = self.location[1]
+        with open('saved_player.json', 'w') as file:
+            json.dump(self.data, file, indent=4)
+
+    def help(self, world: object) -> None:
+        clear_terminal()
+        with open("game_start.txt", 'r') as file:
+            print(file.read())
+            print('Your options:\n1. Continue game\n2. Save game and exit')
+            decision = input('Number of your choice: ')
+            if decision not in ('1', '2'):
+                print('Incorrect option. Try again.')
+                self.help(world)
+            if decision == '1':
+                return
+            if decision == '2':
+                self.save_player()
+                world.save_world()
+                self.backpack.is_key = True

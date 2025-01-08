@@ -13,8 +13,9 @@ def main():
     while True:
         clear_terminal()
         print("\nMain Menu:")
-        print("1. Start Game")  # co z zapisaną grą
-        print("2. Exit")
+        print("1. Start New Game")
+        print("2. Continue saved game")
+        print("3. Exit")
 
         choice = input("Enter a number of your choice: ")
 
@@ -24,6 +25,11 @@ def main():
             sleep(2)
             start_game("locations.json", "player.json")
         elif choice == "2":
+            clear_terminal()
+            print("Starting saved game...")
+            sleep(2)
+            start_game("saved_game.json", "saved_player.json")
+        elif choice == "3":
             clear_terminal()
             print("Exiting the game. Goodbye!")
             sys.exit()
@@ -59,8 +65,6 @@ def start_game(world_file, player_file):
     player = Player(player_file)
     clear_terminal()
     loc = player.find_location(player.location, world.location_list)
-    print(loc.description)
-
     player.decision(loc, world)
 
 

@@ -1,0 +1,159 @@
+{
+    "world size": 3,
+    "locations": [
+        {
+            "name": "forest",
+            "description": "\nYou are deep in the forest, overwhelmed by the silence.\nThe sun has completely disappeared behind the treetops, leaving you in the darkness.\nYour eyes slowly adjust to the gloom.\nSuddenly, the silence is broken by the hoot of an owl.\nA shiver runs down your spine.\nYou want to get out of here as quickly as possible.\nTo the east and south, the dark forest stretches on.\nLooking west, you see bubbling sludge on the ground and smell the stench of a swamp.\nWhat do you do?\n",
+            "object": {},
+            "moves": [
+                "go east",
+                "go west",
+                "go south"
+            ]
+        },
+        {
+            "name": "forest",
+            "description": "\nThe forest around you is quiet and dark, with tall trees reaching high above.\nTheir branches sway gently, and the air smells of moss and wet earth.\nFaint light slips through the leaves, creating pale spots on the ground.\nYou hear the soft rustling of animals moving nearby and the distant croak of frogs.\nTo the west, the trees grow thick and close together and an old path covered in vines stretches into the darkness.\nTo the south, there is a faint glimmer of water, maybe a stream or pond.\nThere could be a bridge there. To the east, the forest opens up to a smelly swamp.\nAs you come closer the croak of the frogs intensifies.\nWhat do you do?\n",
+            "object": {},
+            "moves": [
+                "go east",
+                "go west",
+                "go south"
+            ]
+        },
+        {
+            "name": "swamp",
+            "description": {
+                "monster alive": "\nThe air is thick and foul, reeking of decay.\nMuddy pools bubble around you, and twisted trees rise from the swamp, their roots visible through water.\nInsects buzz faintly, and you hear splashes from something moving in the water and croaking of frogs.\nA monstrous figure comes out of the mist.\nIts body is covered in slimy scales, with long claws that shimmer in the faint light.\nIts glowing yellow eyes seem to pierce through the fog, watching your every move.\nRows of sharp teeth are visible and a low growl rumbles from its chest.\nTo the west and east, the swamp fades into a forest, dark and quiet.\nTo the south, you can just make out the distant lights of a city.\nThe swamp feels dangerous and alive, every shadow shifting.\nWhat do you do?\n",
+                "monster dead": "\nThe air is thick and foul, reeking of decay.\nMuddy pools bubble around you, and twisted trees rise from the swamp, their roots visible through water.\nInsects buzz faintly, and you hear splashes from something moving in the water and croaking of frogs.\nTo the west and east, the swamp fades into a forest, dark and quiet.\nTo the south, you can just make out the distant lights of a city.\nThe swamp feels dangerous and alive, every shadow shifting.\nWhat do you do?\n"
+            },
+            "object": {
+                "monster": {
+                    "name": "Gregorr",
+                    "health": 200,
+                    "level": 2,
+                    "coins": 30,
+                    "description": "This is Gregorr",
+                    "hit strength": 100
+                }
+            },
+            "moves": {
+                "monster alive": [
+                    "fight monster",
+                    "go east",
+                    "go west",
+                    "go north",
+                    "go south"
+                ],
+                "monster dead": [
+                    "go east",
+                    "go west",
+                    "go north",
+                    "go south"
+                ]
+            }
+        },
+        {
+            "name": "forest",
+            "description": "\nAll around you, there are only trees.\nIn the distance, you hear wolves howling and birds chirping.\nBlades of grass rustle as the wind brushes past them, whistling softly.\nThe last rays of sunlight struggle to pierce through the treetops, gently grazing your face.\nA chill wraps around your light clothing.\nTo the north stretches a forest, with a path worn down by travelers.\nLooking west, you can make out the outlines of city buildings and hear the faint laughter of children.\nTurning south, you see a massive cave that looks like a gaping abyss.\nWhat do you do?\n",
+            "object": {},
+            "moves": [
+                "go west",
+                "go north",
+                "go south"
+            ]
+        },
+        {
+            "name": "bridge",
+            "description": {
+                "monster alive": "\nYou hear the soft murmur of a stream.\nIn front of you stands a small bridge made of uneven stones.\nIt looks very old, and you worry about its stability, as you step on it.\nAt the northern end of the bridge, the forest stretches on,\nwhile at the southern end stands an old tavern, from which loud shouts of joy can be heard.\nSuddenly, you see a massive creature, half-covered in fur and half in feathers.\nIts terrifying claws are smeared with blood, and its fangs, too large to fit in its mouth, stick out and shimmer in the sunlight.\nYou've never seen a monster like this in your life.\nCurious, could there be something in the pouch tied to its side?\nCan you defeat it?\nWhat do you do?\n",
+                "monster dead": "\nYou hear the soft murmur of a stream.\nIn front of you stands a small bridge made of uneven stones.\nIt looks very old, and you worry about its stability, as you step on it.\nAt the northern end of the bridge, the forest stretches on,\nwhile at the southern end stands an old tavern, from which loud shouts of joy can be heard.\nWhat do you do?\n"
+            },
+            "object": {
+                "monster": {
+                    "name": "Argarr",
+                    "health": 100,
+                    "level": 1,
+                    "coins": 10,
+                    "description": "This is Argarr"
+                }
+            },
+            "moves": {
+                "monster alive": [
+                    "go north",
+                    "go south",
+                    "fight monster"
+                ],
+                "monster dead": [
+                    "go north",
+                    "go south"
+                ]
+            }
+        },
+        {
+            "name": "city",
+            "description": "\nYou enter the city market, where the air is filled with the smells of fresh bread, roasting meat, and sweet spices.\nStalls line the streets, colorful awnings offering shade to the merchants and their goods.\nTo your left, a butcher sells cuts of meat, and to your right, a spice vendor offers bags of fragrant herbs.\nA few steps further, a baker pulls warm pastries from his oven, and children run through the crowd, laughing and playing.\nMerchants shout out their prices, hoping to catch your attention.\nA light odor comes from the swamp north of you.\nTo the east a quiet forest stretches on.\nInviting you with a path.\nTo the south you can hear more conversations and laughter of children.\nAnother beautiful part of the city is visible.\nThe market is busy and alive with energy.\nWhat do you do?\n",
+            "object": {},
+            "moves": [
+                "go east",
+                "go north",
+                "go south"
+            ]
+        },
+        {
+            "name": "cave",
+            "description": {
+                "monster alive": "\nYou step into the cave where the air is cold and damp.\nThe space ahead is very narrow with uneven ground and the sound of dripping water echoing around you.\nSuddenly, a low growl shakes the walls.\nFrom the shadows, a massive creature emerges, with its thick fur perfectly clean.\nIts glowing red eyes lock onto you as it growls, revealing sharp teeth.\nIts massive claws scrape the ground as it steps closer, its presence filling the cave.\nYou notice countless human bones lying all around you.\nThis might be the deadliest beast you have encountered.\nThe only way out is to the north, where daylight reaches the forest.\nWhat do you do?\n",
+                "monster dead": "\nYou step into the cave where the air is cold and damp.\nThe space ahead is very narrow with uneven ground, and the sound of dripping water echoes around you.\nThe cave feels too quiet.\nAs you move forward, you notice countless human bones scattered across the ground,\nsome half-buried in the earth, others barely visible in the dim light.\nThe weight of the atmosphere is overwhelming, as though the cave itself is holding its breath.\nThe path continues deeper into the shadows, but the only way out is to the north,\nwhere daylight filters through the caves mouth into the forest beyond.\nThe fresh air from outside feels like a distant memory.\nWhat do you do?\n"
+            },
+            "object": {
+                "monster": {
+                    "name": "Nanderr",
+                    "health": 200,
+                    "level": 3,
+                    "coins": 50,
+                    "description": "This is Nanderr",
+                    "hit strength": 15
+                }
+            },
+            "moves": {
+                "monster alive": [
+                    "go north",
+                    "fight monster"
+                ],
+                "monster dead": [
+                    "go north"
+                ]
+            }
+        },
+        {
+            "name": "tavern",
+            "description": "\nYou see a large wooden building with a sign that reads The Drunk Duck.\nAs you step inside you are greeted by a wave of warmth and the scent of alcohol.\nIt's incredibly loud and you can barely squeeze through the bustling servers carrying venison and beer and men occupying every table.\nA man in the corner with a sour expression watches you intently.\nHis large belly is barely covered by clothes adorned with expensive gemstones.\nAt his belt hangs a pouch that jingles merrily with every movement. You recognize in him the famous trader from the city.\nAs you left the door open behind you (north) you see another entrance on the east side of the tavern.\nWhat do you do?\n",
+            "object": {
+                "trader": {
+                    "name": "Ghastly the Great",
+                    "item": {
+                        "name": "key",
+                        "description": "This key opens a new world!",
+                        "price": 100
+                    }
+                }
+            },
+            "moves": [
+                "go east",
+                "go north",
+                "talk to trader"
+            ]
+        },
+        {
+            "name": "city",
+            "description": "\nYou stand in the middle of a large cobblestone square.\nSurrounding you are wooden buildings with stone foundations, some two or three stories high, providing shelter for the local people.\nIn front of you, children run by, laughing as they play tag.\nBehind you, you hear the clatter of hooves from a carriage and the neighing of a horse.\nTo the west, there's a tavern, and you can hear its owner arguing with someone in the alley.\nTo the north, rows of houses stretch further, marking a bustling, lively city.\nTo the south, all you hear is the distant, bubbling swamp, uninhabited and silent.\nWhat do you do?\n",
+            "object": {},
+            "moves": [
+                "go west",
+                "go north",
+                "go south"
+            ]
+        }
+    ]
+}
