@@ -98,3 +98,5 @@ class Backpack:
     def add_key(self) -> None:
         self.is_key = True
         print('You have the key! The game is complete!')
+        if input("Press enter to return to home screen:"):
+            return

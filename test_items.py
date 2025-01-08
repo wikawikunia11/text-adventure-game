@@ -37,7 +37,7 @@ def test_create_trader_keyerror_name():
         Trader(trader_data)
 
 
-def test_sell_key():
+def test_sell_key(monkeypatch):
     player = Player('test_player.json')
     trader_data = {
         'name': 'Andreas',
@@ -49,6 +49,7 @@ def test_sell_key():
     }
     trader = Trader(trader_data)
     assert not player.backpack.is_key
+    monkeypatch.setattr('builtins.input', lambda _: None)
     trader.sell_key(player)
     assert player.backpack.is_key
     assert player.backpack.coins == 0
@@ -75,8 +76,21 @@ class TestTrader(unittest.TestCase):
                 mock_stdout.getvalue(), ('1. key : This is a key.\n'
                                          '\tThis item costs 10 coins.\n\n')
             )
-        trader.sell_key(player)
-        assert player.backpack.is_key
+        with (
+            unittest.mock.patch('sys.stdout',
+                                new_callable=io.StringIO)
+            as mock_stdout,
+            unittest.mock.patch('builtins.input',
+                                return_value='ok')
+            as mock_input
+        ):
+            trader.sell_key(player)
+            self.assertEqual(
+                mock_stdout.getvalue(),
+                "You have the key! The game is complete!\n"
+            )
+            self.assertTrue(player.backpack.is_key)
+            mock_input.assert_called_once()
         with unittest.mock.patch(
             'sys.stdout', new_callable=io.StringIO
         ) as mock_stdout:
@@ -110,12 +124,18 @@ class TestBackpack(unittest.TestCase):
     def test_backpack_add_key(self):
         backpack = Backpack(10)
         assert not backpack.is_key
-        with unittest.mock.patch(
-            'sys.stdout', new_callable=io.StringIO
-        ) as mock_stdout:
+        with (
+            unittest.mock.patch('sys.stdout',
+                                new_callable=io.StringIO)
+            as mock_stdout,
+            unittest.mock.patch('builtins.input',
+                                return_value='ok')
+            as mock_input
+        ):
             backpack.add_key()
             self.assertEqual(
-                mock_stdout.getvalue(), ('You have the key! '
-                                         'The game is complete!\n')
+                mock_stdout.getvalue(),
+                "You have the key! The game is complete!\n"
             )
-            assert backpack.is_key
+            self.assertTrue(backpack.is_key)
+            mock_input.assert_called_once()
