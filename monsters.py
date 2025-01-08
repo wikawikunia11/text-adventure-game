@@ -16,10 +16,9 @@ class Monster_level_1:
                 raise ValueError('Number of coins can not be negative')
             else:
                 self.coins = monster['coins']
-            self.description = monster['description']
         except KeyError:
             raise KeyError('The dictionary should contain keys:'
-                           'type, level, health, name, coins, description')
+                           'type, level, health, name, coins')
 
     def get_damage(self, damage: int) -> None:
         if damage < 0:

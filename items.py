@@ -2,20 +2,6 @@ from clear_console import clear_terminal
 from time import sleep
 
 
-class Item:
-    def __init__(self, item: dict) -> None:
-        try:
-            self.name = item['name']
-            self.description = item['description']
-            self.price = item['price']
-        except KeyError:
-            raise KeyError('The dictionary should contain keys:'
-                           'name, description, price')
-
-    def get_description(self) -> str:
-        return f"{self.description}. This item costs {self.price} coins"
-
-
 class Trader:
     def __init__(self, trader: dict) -> None:
         self.type = 'trader'
