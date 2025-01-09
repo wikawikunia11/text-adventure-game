@@ -166,6 +166,12 @@ class Player:
         print(f'Your hp is: {self.health}. '
               f'Monsters hp is: {monster.health}.')
 
+    def fight_end(self, monster):
+        clear_terminal()
+        print('You have defeated the monster! You are healed.')
+        self.receive_coins(monster.give_coins())
+        self.heal()
+
     def fight_monster(self, monster: object) -> None:
         print(f'You are fighting monster level 1 named {monster.name}.')
         while monster.is_alive(0) and self.is_alive(0):
@@ -173,10 +179,7 @@ class Player:
             sleep(2)
             monster.get_damage(self.attack())
         if self.is_alive(0):
-            clear_terminal()
-            print('You have defeated the monster! You are healed.')
-            self.receive_coins(monster.give_coins())
-            self.heal()
+            self.fight_end(monster)
 
     def fight_monster_level_2(self, monster: object) -> None:
         print(f'You are fighting monster level 2 named {monster.name}.'
@@ -190,10 +193,7 @@ class Player:
                 self.get_damage(damage)
                 print('You have been hit!')
         if self.is_alive(0):
-            clear_terminal()
-            print('You have defeated the monster! You are healed.')
-            self.receive_coins(monster.give_coins())
-            self.heal()
+            self.fight_end(monster)
 
     def fight_monster_level_3(self, monster: object) -> None:
         print(f'You are fighting monster level 3 named {monster.name}.'
@@ -208,10 +208,7 @@ class Player:
                 print('You have been hit!')
             monster.heal(self.attack())
         if self.is_alive(0):
-            clear_terminal()
-            print('You have defeated the monster! You are healed.')
-            self.receive_coins(monster.give_coins())
-            self.heal()
+            self.fight_end(monster)
 
     def talk_to_trader(self, trader: object) -> None:
         trader.introduce(self)
