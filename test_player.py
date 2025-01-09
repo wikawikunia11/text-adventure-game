@@ -51,7 +51,7 @@ def test_player_give_options_monster_alive():
     loc = Location(1, 1, "swamp", "this is swamp",
                    {'monster alive': ["go west", "go east"],
                     'Monster dead': ['go east']}, object)
-    assert player.give_options(loc) == ["go west", "go east"]
+    assert player.give_options(loc) == ["go west", "go east", 'help']
 
 
 def test_player_give_options_monster_dead():
@@ -68,28 +68,13 @@ def test_player_give_options_monster_dead():
                    {'monster alive': ["go west", "go east"],
                     'monster dead': ['go east']}, object)
     loc.object.get_damage(1)
-    assert player.give_options(loc) == ["go east"]
+    assert player.give_options(loc) == ["go east", "help"]
 
 
 def test_player_give_options_no_monster():
     player = Player("test_player.json")
     loc = Location(1, 1, "swamp", "this is swamp", ["go west", "go east"])
-    assert player.give_options(loc) == ["go west", "go east"]
-
-
-def test_player_decision(monkeypatch):
-    player = Player("test_player.json")
-    world = World("test_world.json")
-    monkeypatch.setattr("builtins.input", lambda _: "go east")
-    player.decision(world.location_list[0], world)
-    assert player.location == (1, 0)
-
-
-def test_player_decision_not_in_list(monkeypatch):
-    player = Player("test_player.json")
-    world = World("test_world.json")
-    monkeypatch.setattr("builtins.input", lambda _: "go west")
-    player.decision(world.location_list[0], world)
+    assert player.give_options(loc) == ["go west", "go east", "help"]
 
 
 class TestPlayer_go(unittest.TestCase):

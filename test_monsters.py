@@ -7,7 +7,6 @@ def test_create_monster_level_1():
         'level': 1,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 10
     }
     monster = Monster_level_1(monster_data)
@@ -16,7 +15,6 @@ def test_create_monster_level_1():
     assert monster.name == 'Thor'
     assert monster.health == 200
     assert monster.level == 1
-    assert monster.description == "This is Thor"
     assert monster.coins == 10
 
 
@@ -25,7 +23,6 @@ def test_create_monster_level_1_invalid_health():
         'level': 1,
         'health': -10,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 10
     }
     with pytest.raises(ValueError):
@@ -36,7 +33,6 @@ def test_invalid_keys():
     monster_data = {
         'level': 1,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 10
     }
     with pytest.raises(KeyError):
@@ -52,7 +48,6 @@ def test_create_monster_level_2():
         'level': 2,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 30,
         'hit strength': 20
     }
@@ -67,7 +62,6 @@ def test_create_monster_level_3():
         'level': 3,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 50,
         'hit strength': 20
     }
@@ -81,7 +75,6 @@ def test_monster_get_damage():
         'level': 1,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 10
     }
     monster = Monster_level_1(monster_data)
@@ -97,7 +90,6 @@ def test_monster_get_damage_invalid_damage():
         'level': 1,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 10
     }
     monster = Monster_level_1(monster_data)
@@ -112,7 +104,6 @@ def test_monster_attack_player(monkeypatch):
         'level': 2,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 10,
         'hit strength': 20
     }
@@ -129,7 +120,6 @@ def test_monster_heal(monkeypatch):
         'level': 3,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 50,
         'hit strength': 20
     }
@@ -146,7 +136,6 @@ def test_monster_heal_invalid_damage(monkeypatch):
         'level': 3,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 10,
         'hit strength': 20
     }
@@ -162,7 +151,6 @@ def test_monster_attack_player_super_hit(monkeypatch):
         'level': 3,
         'health': 200,
         "name": "Thor",
-        'description': 'This is Thor',
         'coins': 50,
         'hit strength': 20
     }
