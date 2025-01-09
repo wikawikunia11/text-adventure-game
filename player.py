@@ -46,10 +46,10 @@ class Player:
 
     def die(self) -> bool:
         clear_terminal()
-        print('Game over!')
+        print('Game over!\nYou will shortly return to home screen.')
+        sleep(5)
         self.health = 0
-        # if input('Press enter to go back to home page: '):
-        #     self.backpack.is_key = True
+        self.backpack.is_key = True
 
     def heal(self) -> None:
         self.health = self._max_health
