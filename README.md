@@ -8,7 +8,7 @@ This is a text adventure game. The purpose of this game is to:
 - find and kill monsters (you receive coins from them)
 - find the trader and buy the end-game key
 
-This game enables saving the game and then playing the last saved game. When deciding your move you can type `help` to see again the game synopsis and you will recive an option to save your current game.
+This game enables saving the game and then playing the last saved game. When deciding your move you can type `help` to see again the game synopsis. You will also be given an option to save your current game. Otherwise please type in your decision or the number corresponding when specified. Accept your decision with `Enter`.
 ## Installation
 Please install file `requirements.txt.`
 
