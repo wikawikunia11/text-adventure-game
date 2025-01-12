@@ -20,7 +20,7 @@ $ git clone https://gitlab-stud.elka.pw.edu.pl/wmalazew/text-adventure-game.git
 $ cd text-adventure-game
 
 # Install requirements
-$ pip install -r requirements.text
+$ pip install -r requirements.txt
 
 # Start the game
 $ python3 main.py
