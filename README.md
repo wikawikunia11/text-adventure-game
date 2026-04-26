@@ -23,7 +23,7 @@ $ cd text-adventure-game
 $ pip install -r requirements.txt
 
 # Start the game
-$ python3 main.py
+$ python3 src.main.py
 ```
 
 ## Class diagram
