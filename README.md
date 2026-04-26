@@ -1,5 +1,5 @@
 ## Author
-Wiktoria Małażewska (nr. 336973)
+Wiktoria Małażewska
 
 ## Description
 This is a text adventure game. The purpose of this game is to:
