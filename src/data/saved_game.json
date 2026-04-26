@@ -33,8 +33,7 @@
                     "health": 200,
                     "level": 2,
                     "coins": 30,
-                    "description": "This is Gregorr",
-                    "hit strength": 100
+                    "hit strength": 10
                 }
             },
             "moves": {
@@ -74,8 +73,7 @@
                     "name": "Argarr",
                     "health": 100,
                     "level": 1,
-                    "coins": 10,
-                    "description": "This is Argarr"
+                    "coins": 10
                 }
             },
             "moves": {
@@ -112,7 +110,6 @@
                     "health": 200,
                     "level": 3,
                     "coins": 50,
-                    "description": "This is Nanderr",
                     "hit strength": 15
                 }
             },

@@ -1,8 +1,8 @@
 import sys
-from clear_console import clear_terminal
-from player import Player
+from src.utils.clear_console import clear_terminal
+from src.models.player import Player
 from time import sleep
-from world import World
+from src.models.world import World
 
 
 def main():
@@ -23,12 +23,12 @@ def main():
             clear_terminal()
             print("Starting the game...")
             sleep(2)
-            start_game("locations.json", "player.json")
+            start_game("src/data/locations.json", "src/data/player.json")
         elif choice == "2":
             clear_terminal()
             print("Starting saved game...")
             sleep(2)
-            start_game("saved_game.json", "saved_player.json")
+            start_game("src/data/saved_game.json", "src/data/saved_player.json")
         elif choice == "3":
             clear_terminal()
             print("Exiting the game. Goodbye!")
@@ -40,7 +40,7 @@ def main():
 
 
 def get_game_description():
-    with open("game_start.txt", 'r') as file:
+    with open("src/data/game_start.txt", 'r') as file:
         print(file.read())
         print("1. Continue")
         print("2. Exit")

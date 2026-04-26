@@ -1,4 +1,4 @@
-from clear_console import clear_terminal
+from src.utils.clear_console import clear_terminal
 from time import sleep
 
 

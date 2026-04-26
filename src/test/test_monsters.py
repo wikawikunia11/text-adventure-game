@@ -1,4 +1,4 @@
-from monsters import Monster_level_1, Monster_level_2, Monster_level_3
+from src.models.monsters import Monster_level_1, Monster_level_2, Monster_level_3
 import pytest
 
 
@@ -108,7 +108,7 @@ def test_monster_attack_player(monkeypatch):
         'hit strength': 20
     }
     monster = Monster_level_2(monster_data)
-    monkeypatch.setattr('monsters.randint', return_four)
+    monkeypatch.setattr('src.models.monsters.randint', return_four)
     hit = monster.attack_player()
     assert hit == 20
 
@@ -124,7 +124,7 @@ def test_monster_heal(monkeypatch):
         'hit strength': 20
     }
     monster = Monster_level_3(monster_data)
-    monkeypatch.setattr("monsters.randint", return_four)
+    monkeypatch.setattr("src.models.monsters.randint", return_four)
     monster.get_damage(30)
     assert monster.health == 170
     monster.heal(10)
@@ -155,6 +155,6 @@ def test_monster_attack_player_super_hit(monkeypatch):
         'hit strength': 20
     }
     monster = Monster_level_3(monster_data)
-    monkeypatch.setattr("monsters.randint", return_four)
+    monkeypatch.setattr("src.models.monsters.randint", return_four)
     hit = monster.attack_player()
     assert hit == 40

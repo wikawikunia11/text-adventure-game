@@ -1,6 +1,6 @@
-from location import Location
-from monsters import Monster_level_1
-from items import Trader
+from src.models.location import Location
+from src.models.monsters import Monster_level_1
+from src.models.items import Trader
 
 
 def test_create_location_no_object():

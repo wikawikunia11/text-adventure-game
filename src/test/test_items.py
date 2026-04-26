@@ -1,10 +1,11 @@
-from items import Trader, Backpack
-from player import Player
+from src.models.items import Trader, Backpack
+from src.models.player import Player
 import io
 import unittest
 import unittest.mock
 import pytest
 
+player_dir = 'src/test/test_player.json'
 
 def test_create_trader():
     trader_data = {
@@ -38,7 +39,7 @@ def test_create_trader_keyerror_name():
 
 
 def test_sell_key(monkeypatch):
-    player = Player('test_player.json')
+    player = Player(player_dir)
     trader_data = {
         'name': 'Andreas',
         'item': {
@@ -58,7 +59,7 @@ def test_sell_key(monkeypatch):
 
 class TestTrader(unittest.TestCase):
     def test_trader_introduce_offer(self):
-        player = Player('test_player.json')
+        player = Player(player_dir)
         trader_data = {
             'name': 'Andreas',
             'item': {

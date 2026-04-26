@@ -1,4 +1,4 @@
-from location import Location
+from src.models.location import Location
 import json
 
 
@@ -50,7 +50,7 @@ class World:
             if location.is_monster() and location.object.health == 0:
                 self.data_list[cnt]['object']['monster']['health'] = 0
             cnt += 1
-        with open('saved_game.json', 'w') as file:
+        with open('src/data/saved_game.json', 'w') as file:
             data_to_save = {}
             data_to_save['world size'] = self.size
             data_to_save['locations'] = self.data_list

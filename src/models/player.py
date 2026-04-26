@@ -1,7 +1,7 @@
 import json
-from items import Backpack
+from src.models.items import Backpack
 from time import sleep
-from clear_console import clear_terminal
+from src.utils.clear_console import clear_terminal
 
 
 class Player:
@@ -222,12 +222,12 @@ class Player:
         self.data['backpack']['coins'] = self.backpack.coins
         self.data['location']['x'] = self.location[0]
         self.data['location']['y'] = self.location[1]
-        with open('saved_player.json', 'w') as file:
+        with open('src/data/saved_player.json', 'w') as file:
             json.dump(self.data, file, indent=4)
 
     def help(self, world: object) -> None:
         clear_terminal()
-        with open("game_start.txt", 'r') as file:
+        with open("src/data/game_start.txt", 'r') as file:
             print(file.read())
             print('Your options:\n1. Continue game\n2. Save game and exit')
             decision = input('Number of your choice: ')

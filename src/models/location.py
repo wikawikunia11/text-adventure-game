@@ -1,6 +1,6 @@
-from monsters import Monster_level_1, Monster_level_2, Monster_level_3
-from items import Trader
-from clear_console import clear_terminal
+from src.models.monsters import Monster_level_1, Monster_level_2, Monster_level_3
+from src.models.items import Trader
+from src.utils.clear_console import clear_terminal
 
 
 class Location:
